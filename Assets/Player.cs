@@ -4,36 +4,31 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int distanceMaximum = 2;
-    private int health = 100;
-    public bool IsPlaying { get; set; }
-    private PlayerSetup player;
+    [SerializeField] private GameObject ball;
+
+    private GameObject ballPosition;
+
+    private bool m_IsThrown;
+
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<PlayerSetup>();
-        IsPlaying = false;
-
+        ballPosition = GetComponent<GameObject>();
+        m_IsThrown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (m_IsThrown)
+        {
+            // Créer la balle
+            Instantiate(ball, ballPosition.transform);
 
-    }
+            // Lancer la balle
 
-    public int GetHealth()
-    {
-        return health;
-    }
+        }
 
-    public void LoseHealth(int damage)
-    {
-        health -= damage;
-    }
 
-    public int GetDistanceMax()
-    {
-        return distanceMaximum;
     }
 }

@@ -25,6 +25,7 @@ public class PlayerSetup : MonoBehaviour
         {
             i.enabled = false;
         }
+
         //Afficher "En entente de l'autre joueur"
     }
 
