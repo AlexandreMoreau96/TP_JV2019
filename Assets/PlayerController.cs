@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     private new Rigidbody rigidbody;
     private new Camera camera;
+    private GameObject throwingTransform;
     private Prediction linePrediction;
+    private Volleyball ball;
 
     [SerializeField]
     private float speed;
@@ -15,7 +17,9 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         camera = GetComponentInChildren<Camera>();
-        linePrediction = GameObject.Find("ThrowingTransform").GetComponent<Prediction>();
+        throwingTransform = GameObject.Find("ThrowingTransform");
+        ball = throwingTransform.GetComponentInChildren<Volleyball>();
+        linePrediction = throwingTransform.GetComponent<Prediction>();
     }
 
     // Update is called once per frame
@@ -24,6 +28,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             linePrediction.Show();
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Debug.Log("test");
+            ball.ThrowAction(linePrediction.vitesse_lancer);
         }
 
     }

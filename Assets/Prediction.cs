@@ -11,6 +11,7 @@ public class Prediction : MonoBehaviour
     public float chute_temps = 10.0f;
     public LayerMask A_masquer;
     public Vector3 vitesse_lancer;
+    public Volleyball ball;
 
     private Vector3 xz_forward = Vector3.up;
     [SerializeField]
@@ -115,7 +116,7 @@ public class Prediction : MonoBehaviour
             mi_temps += saut_temps;
 
         }
-
+        ball.Throw(mi_temps, vit_y, vit_xz, xz_forward, point_avant);
         parabole.positionCount = points.Count;
         parabole.SetPositions(points.ToArray());
         return xz_forward * vit_xz + new Vector3(0.0f, vit_y, 0.0f);
