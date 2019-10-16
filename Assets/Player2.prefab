@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 5501349078309677021}
   - component: {fileID: 7645988730008356993}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Camera Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 1888802042425846089}
   - component: {fileID: 8244276994451522215}
   - component: {fileID: 4382084445009982759}
+  - component: {fileID: 1142314869}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player2
@@ -287,7 +288,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 64
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &8244276994451522215
 MonoBehaviour:
@@ -314,3 +315,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59eb725257eb2944d94f10b5d7cdc304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1142314869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8419920532715904327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3f777db1c80f34d9e1b06dd2d2ba55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComponentDisable:
+  - {fileID: 8244276994451522215}
+  - {fileID: 5501349078309677021}
+  - {fileID: 7645988730008356993}
+  playerUIPrefab: {fileID: 0}
+  playerUI: {fileID: 0}
