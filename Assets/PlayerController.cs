@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private new Rigidbody rigidbody;
     private new Camera camera;
+    private Prediction linePrediction;
 
     [SerializeField]
     private float speed;
@@ -14,11 +15,16 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         camera = GetComponentInChildren<Camera>();
+        linePrediction = GameObject.Find("ThrowingTransform").GetComponent<Prediction>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            linePrediction.Show();
+        }
 
     }
 
