@@ -62,36 +62,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GameManager.cs" />
-    <Compile Include="Assets\Player.cs" />
-    <Compile Include="Assets\PlayerSetup.cs" />
-    <Compile Include="Assets\Volleyball.cs" />
+    <Compile Include="Assets\Script\GameManager.cs" />
+    <Compile Include="Assets\Script\Player.cs" />
+    <Compile Include="Assets\Script\PlayerSetup.cs" />
+    <Compile Include="Assets\Script\ThrowSimulation.cs" />
+    <Compile Include="Assets\Script\Volleyball.cs" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/Alex/Documents/École/Université/Automne19/Jeu vidéo/TP_JV2019/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/William/TP_JV2019/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/Alex/Documents/École/Université/Automne19/Jeu vidéo/TP_JV2019/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/William/TP_JV2019/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Alex/Documents/École/Université/Automne19/Jeu vidéo/TP_JV2019/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/William/TP_JV2019/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/Alex/Documents/École/Université/Automne19/Jeu vidéo/TP_JV2019/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/William/TP_JV2019/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/Alex/Documents/École/Université/Automne19/Jeu vidéo/TP_JV2019/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/William/TP_JV2019/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Alex/Documents/École/Université/Automne19/Jeu vidéo/TP_JV2019/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/William/TP_JV2019/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/Alex/Documents/École/Université/Automne19/Jeu vidéo/TP_JV2019/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/William/TP_JV2019/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Alex/Documents/École/Université/Automne19/Jeu vidéo/TP_JV2019/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/William/TP_JV2019/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/Alex/Documents/École/Université/Automne19/Jeu vidéo/TP_JV2019/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/William/TP_JV2019/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
