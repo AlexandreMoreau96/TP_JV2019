@@ -1265,7 +1265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4271449ca735c143a217b5c8562c08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Velocity: {x: 0, y: 0, z: 0}
   possibleCollisionGameObjects:
   - {fileID: 246347078}
   - {fileID: 884900392}
@@ -1273,6 +1272,9 @@ MonoBehaviour:
   - {fileID: 927932013}
   - {fileID: 1147814910}
   - {fileID: 2143278333}
+  Vx: 0
+  Vy: 0
+  Vz: 0
 --- !u!1 &1906750787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,6 +1527,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Environnement
       objectReference: {fileID: 0}
+    - target: {fileID: 1190750455641975283, guid: df775bdd2b445344f8d426c57daa6585,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1190750455641975283, guid: df775bdd2b445344f8d426c57daa6585,
+        type: 3}
+      propertyPath: m_TagString
+      value: terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 9069839613745491534, guid: df775bdd2b445344f8d426c57daa6585,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1580,25 +1592,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9069839613745491528, guid: df775bdd2b445344f8d426c57daa6585,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 01f90fe77b4e92d4eb001b46533eee0f, type: 2}
-    - target: {fileID: 9069839613698716882, guid: df775bdd2b445344f8d426c57daa6585,
+    - target: {fileID: 4829092039937589724, guid: df775bdd2b445344f8d426c57daa6585,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 1190750455641975283, guid: df775bdd2b445344f8d426c57daa6585,
+    - target: {fileID: 63263937803320717, guid: df775bdd2b445344f8d426c57daa6585,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 1190750455641975283, guid: df775bdd2b445344f8d426c57daa6585,
+    - target: {fileID: 7337706588146203050, guid: df775bdd2b445344f8d426c57daa6585,
         type: 3}
-      propertyPath: m_TagString
-      value: terrain
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5804422603274707528, guid: df775bdd2b445344f8d426c57daa6585,
         type: 3}
@@ -1610,22 +1617,17 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 9069839613745491528, guid: df775bdd2b445344f8d426c57daa6585,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 01f90fe77b4e92d4eb001b46533eee0f, type: 2}
+    - target: {fileID: 9069839613698716882, guid: df775bdd2b445344f8d426c57daa6585,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5645921852812324365, guid: df775bdd2b445344f8d426c57daa6585,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 7337706588146203050, guid: df775bdd2b445344f8d426c57daa6585,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 63263937803320717, guid: df775bdd2b445344f8d426c57daa6585,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4829092039937589724, guid: df775bdd2b445344f8d426c57daa6585,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
