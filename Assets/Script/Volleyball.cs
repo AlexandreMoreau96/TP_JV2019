@@ -10,15 +10,21 @@ public class Volleyball : MonoBehaviour
     public float Vx = 0;
     public float Vy = 0;
     public float Vz = 0;
-    private bool notCollide = true;
     private ThrowSimulation m_Throw;
-    private bool m_collisionAPriori;
-    private float m_ElapseTime;
+    private Vector3 m_ContactPoint;
+    private bool m_JustBounced = false;
+    private float m_ElapsedTime = 0.0f;
+    public bool m_IsThrowing = false;
+    public float m_Gravity = 9.81f;
+    public float m_Friction = 1f;
+    public float m_Bounciness = 0.75f;
+    private Vector3 m_LastVelocity = new Vector3(0,0,0);
 
     private void Start()
     {
         m_Throw = GameObject.Find("Player1").GetComponent<ThrowSimulation>();
     }
+
     public void DetectCollision()
     {
         foreach (GameObject vObject in possibleCollisionGameObjects)
@@ -32,15 +38,39 @@ public class Volleyball : MonoBehaviour
                 }
             }
 
-            if (vObject.tag == "terrain") { 
-                Vector3 vSize = vObject.GetComponent<Renderer>().bounds.size;
-                if (transform.position.x >= 0 && transform.position.x <= vSize.x && transform.position.z >= 0 && transform.position.z <= vSize.z)
-                {
-                    m_ElapseTime = 0;
-                    Debug.Log("collision avec le terrain");
-                    Vy = -Vy * 0.1f;
+            if (vObject.tag == "terrain") {
 
+                if (m_ElapsedTime >= 0.25f && m_JustBounced) {
+                    m_JustBounced = false;
                 }
+
+                Vector3 vSize = vObject.GetComponent<Renderer>().bounds.size;
+                //float vMagnitude = (transform.position - m_ContactPoint).sqrMagnitude;
+
+                if (transform.position.x >= 0 && transform.position.x <= vSize.x && transform.position.z >= 0 && transform.position.z <= vSize.z
+                    && transform.position.y - GetComponent<Renderer>().bounds.extents.y <= vObject.transform.position.y && m_JustBounced == false)
+                {
+                    Debug.Log("collision avec le terrain");
+
+                    Debug.Log("Before: " + Vy);
+
+                    if (Vy < 2.0f && Vy > -2.0f)
+                    {
+                        Vy = m_LastVelocity.y;
+                        Vx = Vx * m_Friction;
+                        Vz = Vz * m_Friction;
+                    }
+                    else
+                    {
+                        Vy = -Vy * m_Bounciness;
+                        Vx = Vx * m_Friction;
+                        Vz = Vz * m_Friction;
+                        m_JustBounced = true;
+                        m_ElapsedTime = 0.0f;
+                    }
+                }
+
+                
             }
         }
     }
@@ -58,21 +88,32 @@ public class Volleyball : MonoBehaviour
 
                 if (vLastX >= 0 && vLastX <= vSize.x && vLastZ >= 0 && vLastZ <= vSize.z)
                 {
-                    Vector3 vContactPosition = new Vector3(vLastX, vObject.transform.position.y, vLastZ);
-                    m_collisionAPriori = true;
+                    m_ContactPoint = new Vector3(vLastX, vObject.transform.position.y, vLastZ);
                     return true;
                 }
 
                 break;
             }
         }
-        m_collisionAPriori = false;
         return false;
     }
 
     void Update()
     {
-        m_ElapseTime += Time.deltaTime;
+        m_ElapsedTime += Time.deltaTime;
+    }
+
+    public void FixedUpdate() {
         DetectCollision();
+
+        if (m_IsThrowing) {
+            transform.Translate(Vx * Time.deltaTime, Vy * Time.deltaTime, Vz * Time.deltaTime);
+            Vy = Vy - m_Gravity * Time.deltaTime;
+        }
+    }
+
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

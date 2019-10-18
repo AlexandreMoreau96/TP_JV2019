@@ -14,9 +14,6 @@ public class ThrowSimulation : MonoBehaviour
     private Transform Projectile;
     private Transform myTransform;
 
-    private bool Is_Throwing = false;
-    private bool Is_DoneThrowing = false;
-
     void Awake()
     {
         myTransform = transform;
@@ -25,24 +22,6 @@ public class ThrowSimulation : MonoBehaviour
     void Start()
     {
         
-    }
-
-    public void Update()
-    {
-        if (Is_Throwing)
-        {
-            Projectile.Translate(Projectile.gameObject.GetComponent<Volleyball>().Vx * Time.deltaTime, (Projectile.gameObject.GetComponent<Volleyball>().Vy - (gravity * m_ElapsedTime)) * Time.deltaTime, Projectile.gameObject.GetComponent<Volleyball>().Vz * Time.deltaTime);
-
-            m_ElapsedTime += Time.deltaTime;
-
-            if (m_ElapsedTime >= m_FlightDuration * 2)
-            {
-                Is_DoneThrowing = true;
-                Is_Throwing = false;
-                m_ElapsedTime = 0;
-                Destroy(Projectile.gameObject);
-            }
-        }
     }
 
     public void SimulateProjectile()
@@ -55,9 +34,10 @@ public class ThrowSimulation : MonoBehaviour
             playerModifier = -1;
         }
 
-        Vector3 m_ProjectileVelocity = new Vector3(Random.value * 10 * playerModifier, 15f, Random.value * 20 - 10);
+        Vector3 m_ProjectileVelocity = new Vector3(Random.value * 10 * playerModifier, Random.value * 20, Random.value * 10 - 5);
 
         Projectile = Instantiate(BallGameObject).transform;
+        Projectile.gameObject.SetActive(true);
 
         // Move projectile to the position of throwing object + add some offset if needed.
         Projectile.position = myTransform.position + new Vector3(0, 0.0f, 0);
@@ -76,6 +56,6 @@ public class ThrowSimulation : MonoBehaviour
             Debug.Log("Il y aura une collision avec le terrain.");
         }
 
-        Is_Throwing = true;
+        Projectile.gameObject.GetComponent<Volleyball>().m_IsThrowing = true;
     }
 }

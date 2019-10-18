@@ -1166,7 +1166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1890193263
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1275,6 +1275,10 @@ MonoBehaviour:
   Vx: 0
   Vy: 0
   Vz: 0
+  m_IsThrowing: 0
+  m_Gravity: 9.81
+  m_Friction: 0.985
+  m_Bounciness: 0.5
 --- !u!1 &1906750787
 GameObject:
   m_ObjectHideFlags: 0
