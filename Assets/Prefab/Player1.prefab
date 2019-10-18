@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8267643435485273719}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: Player1
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59eb725257eb2944d94f10b5d7cdc304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 0}
-  ball: {fileID: 0}
+  m_Gm: {fileID: 0}
+  m_Ball: {fileID: 0}
 --- !u!114 &1630451095524225356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0e7c916cbe4cd4bb26ea824c8ba922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
   firingAngle: 45
   gravity: 9.8
   Projectile: {fileID: 0}

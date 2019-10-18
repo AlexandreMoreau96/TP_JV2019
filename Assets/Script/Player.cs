@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameManager gm;
-    public GameObject ball;
+    public GameManager m_Gm;
+    public GameObject m_Ball;
+
+    private float m_Radius = 1.0f;
 
     // Update is called once per frame
     void Update()
@@ -15,7 +17,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonUp("Fire1"))
         {
             //Change the players turn
-            gm.ChangeTurn();
+            m_Gm.ChangeTurn();
         }
 
         if(DetectCollision())
@@ -27,5 +29,10 @@ public class Player : MonoBehaviour
     private bool DetectCollision()
     {
         return true;
+    }
+
+    public float sqrRadius()
+    {
+        return m_Radius * m_Radius;
     }
 }

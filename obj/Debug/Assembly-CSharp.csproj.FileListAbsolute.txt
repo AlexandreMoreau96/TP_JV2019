@@ -256,3 +256,12 @@ D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\obj\Debug\As
 D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\obj\Debug\Assembly-CSharp.dll
 D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\obj\Debug\Assembly-CSharp.pdb
+D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\Temp\bin\Debug\Unity.Timeline.Editor.pdb
+D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\Temp\bin\Debug\Unity.VSCode.Editor.pdb
+D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\Temp\bin\Debug\Unity.TextMeshPro.Editor.pdb
+D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\Temp\bin\Debug\UnityEngine.UI.pdb
+D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\Temp\bin\Debug\Unity.Timeline.pdb
+D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\Temp\bin\Debug\Unity.CollabProxy.Editor.pdb
+D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\Temp\bin\Debug\Unity.Rider.Editor.pdb
+D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\Temp\bin\Debug\Unity.TextMeshPro.pdb
+D:\Alex\Documents\École\Université\Automne19\Jeu vidéo\TP_JV2019\Temp\bin\Debug\UnityEditor.UI.pdb

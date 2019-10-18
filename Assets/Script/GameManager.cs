@@ -24,8 +24,7 @@ public class GameManager : MonoBehaviour
         //Le joueur 1 joue en premier
         player1Playing = true;
         player2.GetComponent<PlayerSetup>().DisableComponents();
-        player1.GetComponent<ThrowSimulation>().SetTarget();
-        StartCoroutine(player1.GetComponent<ThrowSimulation>().SimulateProjectile());
+        player1.GetComponent<ThrowSimulation>().SimulateProjectile();
     }
 
     // Update is called once per frame
@@ -42,15 +41,13 @@ public class GameManager : MonoBehaviour
         {
             player1.GetComponent<PlayerSetup>().DisableComponents();
             player2.GetComponent<PlayerSetup>().EnableComponents();
-            player2.GetComponent<ThrowSimulation>().SetTarget();
-            StartCoroutine(player2.GetComponent<ThrowSimulation>().SimulateProjectile());
+            player2.GetComponent<ThrowSimulation>().SimulateProjectile();
         }
         else
         {
             player2.GetComponent<PlayerSetup>().DisableComponents();
             player1.GetComponent<PlayerSetup>().EnableComponents();
-            player1.GetComponent<ThrowSimulation>().SetTarget();
-            StartCoroutine(player1.GetComponent<ThrowSimulation>().SimulateProjectile());
+            player1.GetComponent<ThrowSimulation>().SimulateProjectile();
         }
     }
 }
