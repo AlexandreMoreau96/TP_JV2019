@@ -10,31 +10,32 @@ public class Volleyball : MonoBehaviour
     public float Vx = 0;
     public float Vy = 0;
     public float Vz = 0;
-    private ThrowSimulation m_Throw;
     private Vector3 m_ContactPoint;
     private bool m_JustBounced = false;
     private float m_ElapsedTime = 0.0f;
     public bool m_IsThrowing = false;
     public float m_Gravity = 9.81f;
-    public float m_Friction = 1f;
-    public float m_Bounciness = 0.75f;
-    private Vector3 m_LastVelocity = new Vector3(0,0,0);
+    private Physics m_Physics;
 
     private void Start()
     {
-        m_Throw = GameObject.Find("Player1").GetComponent<ThrowSimulation>();
+        m_Physics = GetComponent<Physics>();
     }
 
     public void DetectCollision()
     {
         foreach (GameObject vObject in possibleCollisionGameObjects)
         {
-            //transform de la balle devrait etre changer par le transform de la balle a sa fin?
-            Vector3 vBuffer = vObject.transform.position - transform.position;
+            if (vObject.tag == "Net") {
+                Vector3 vSize = vObject.GetComponent<Renderer>().bounds.size;
 
-            if (vObject.tag == "Player") {
-                if (vBuffer.sqrMagnitude <= vObject.GetComponent<Player>().sqrRadius()) {
-                    //Debug.Log("La balle sera attrapee par le joueur adverse");
+                Vector3 vClosestPoint = vObject.GetComponent<Renderer>().bounds.ClosestPoint(transform.position);
+
+                if ((transform.position - vClosestPoint).sqrMagnitude <=
+                    GetComponent<Renderer>().bounds.extents.sqrMagnitude)
+                {
+                    Destroy(gameObject);
+                    Debug.Log("Collision avec le filet");
                 }
             }
 
@@ -45,29 +46,25 @@ public class Volleyball : MonoBehaviour
                 }
 
                 Vector3 vSize = vObject.GetComponent<Renderer>().bounds.size;
-                //float vMagnitude = (transform.position - m_ContactPoint).sqrMagnitude;
+
+                Vector3 vClosestPoint = vObject.GetComponent<Renderer>().bounds.ClosestPoint(transform.position);
 
                 if (transform.position.x >= 0 && transform.position.x <= vSize.x && transform.position.z >= 0 && transform.position.z <= vSize.z
-                    && transform.position.y - GetComponent<Renderer>().bounds.extents.y <= vObject.transform.position.y && m_JustBounced == false)
-                {
-                    Debug.Log("collision avec le terrain");
-
-                    Debug.Log("Before: " + Vy);
+                    && transform.position.y - GetComponent<Renderer>().bounds.extents.y <= vObject.transform.position.y && m_JustBounced == false) {
 
                     if (Vy < 2.0f && Vy > -2.0f)
                     {
-                        Vy = m_LastVelocity.y;
-                        Vx = Vx * m_Friction;
-                        Vz = Vz * m_Friction;
+                        Vy = 0;
                     }
                     else
                     {
-                        Vy = -Vy * m_Bounciness;
-                        Vx = Vx * m_Friction;
-                        Vz = Vz * m_Friction;
+                        Vy = -Vy * vObject.GetComponent<Physics>().m_Bounciness;
                         m_JustBounced = true;
                         m_ElapsedTime = 0.0f;
                     }
+
+                    Vx = Vx * vObject.GetComponent<Physics>().m_Friction;
+                    Vz = Vz * vObject.GetComponent<Physics>().m_Friction;
                 }
 
                 
@@ -101,6 +98,11 @@ public class Volleyball : MonoBehaviour
     void Update()
     {
         m_ElapsedTime += Time.deltaTime;
+
+        if (m_ElapsedTime >= 4 && m_ContactPoint != Vector3.zero)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void FixedUpdate() {
@@ -108,7 +110,7 @@ public class Volleyball : MonoBehaviour
 
         if (m_IsThrowing) {
             transform.Translate(Vx * Time.deltaTime, Vy * Time.deltaTime, Vz * Time.deltaTime);
-            Vy = Vy - m_Gravity * Time.deltaTime;
+            Vy = Vy - m_Physics.GRAVITY * Time.deltaTime;
         }
     }
 

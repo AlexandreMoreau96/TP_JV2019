@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
 
     private bool player1Playing;
 
+    public Camera m_CinematicCamera;
+
+    private bool m_SwitchingTurn = false;
+
     private void Awake()
     {
         player1 = players[0];
@@ -30,7 +34,25 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameObject.FindGameObjectsWithTag("Ball").Length == 0 && !m_SwitchingTurn)
+        {
+            ChangeTurn();
+            m_SwitchingTurn = true;
+        }
+
+        if (m_SwitchingTurn && !m_CinematicCamera.GetComponent<CinematicCamera>().m_IsMoving)
+        {
+            if (player1Playing)
+            {
+                player1.GetComponent<ThrowSimulation>().SimulateProjectile();
+            }
+            else
+            {
+                player2.GetComponent<ThrowSimulation>().SimulateProjectile();
+            }
+
+            m_SwitchingTurn = false;
+        }
     }
 
     public void ChangeTurn()
@@ -39,15 +61,16 @@ public class GameManager : MonoBehaviour
 
         if (player1Playing)
         {
-            player1.GetComponent<PlayerSetup>().DisableComponents();
-            player2.GetComponent<PlayerSetup>().EnableComponents();
-            player2.GetComponent<ThrowSimulation>().SimulateProjectile();
+            player2.GetComponent<PlayerSetup>().DisableComponents();
+            player1.GetComponent<PlayerSetup>().EnableComponents();
+
         }
         else
         {
-            player2.GetComponent<PlayerSetup>().DisableComponents();
-            player1.GetComponent<PlayerSetup>().EnableComponents();
-            player1.GetComponent<ThrowSimulation>().SimulateProjectile();
+            player1.GetComponent<PlayerSetup>().DisableComponents();
+            player2.GetComponent<PlayerSetup>().EnableComponents();
         }
+
+        m_CinematicCamera.GetComponent<CinematicCamera>().m_IsMoving = true;
     }
 }

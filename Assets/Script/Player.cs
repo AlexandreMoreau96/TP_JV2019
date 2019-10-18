@@ -13,17 +13,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //collision detection instead of a mouse press
-        if (Input.GetButtonUp("Fire1"))
-        {
-            //Change the players turn
-            m_Gm.ChangeTurn();
-        }
 
-        if(DetectCollision())
-        {
-
-        }
     }
 
     private bool DetectCollision()
