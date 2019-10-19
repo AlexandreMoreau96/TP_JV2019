@@ -12,7 +12,7 @@ public class ThrowSimulation : MonoBehaviour
     public GameObject BallGameObject;
     private Transform Projectile;
 
-    public void SimulateProjectile()
+    public void ThrowProjectile()
     {
         // To negate the velocity x in case it's the player 2 playing.
         int playerModifier = 1;
@@ -23,7 +23,8 @@ public class ThrowSimulation : MonoBehaviour
         }
 
         // Random values for the shots
-        Vector3 m_ProjectileVelocity = new Vector3(Random.value * 10 * playerModifier, Random.value * 20 , Random.value * 10 - 5);
+        //Vector3 m_ProjectileVelocity = new Vector3((Random.value * 10 + 2 )* playerModifier, Random.value * 20 + 5 , Random.value * 10 - 5);
+        Vector3 m_ProjectileVelocity = new Vector3(7 * playerModifier, 12, 1);
 
         // Create the new ball
         Projectile = Instantiate(BallGameObject).transform;
@@ -36,18 +37,18 @@ public class ThrowSimulation : MonoBehaviour
         Projectile.position = transform.position + new Vector3(0, 0.0f, 0);
 
         // Set the velocity of the ball object
-        Projectile.gameObject.GetComponent<Volleyball>().Vx = m_ProjectileVelocity.x;
-        Projectile.gameObject.GetComponent<Volleyball>().Vy = m_ProjectileVelocity.y;
-        Projectile.gameObject.GetComponent<Volleyball>().Vz = m_ProjectileVelocity.z;
+        Projectile.gameObject.GetComponent<Volleyball>().m_Vx = m_ProjectileVelocity.x;
+        Projectile.gameObject.GetComponent<Volleyball>().m_Vy = m_ProjectileVelocity.y;
+        Projectile.gameObject.GetComponent<Volleyball>().m_Vz = m_ProjectileVelocity.z;
 
         // Calculate the flight duration with the quadratic formula
-        m_FlightDuration = (-Projectile.gameObject.GetComponent<Volleyball>().Vy - Mathf.Sqrt(Mathf.Pow(Projectile.gameObject.GetComponent<Volleyball>().Vy, 2) + 2 * gravity * Projectile.position.y)) / -gravity;
+        m_FlightDuration = (-Projectile.gameObject.GetComponent<Volleyball>().m_Vy - Mathf.Sqrt(Mathf.Pow(Projectile.gameObject.GetComponent<Volleyball>().m_Vy, 2) + 2 * gravity * Projectile.position.y)) / -gravity;
 
         // Calculate the distance of the flight
-        float target_Distance = Mathf.Sqrt(Mathf.Pow(Projectile.gameObject.GetComponent<Volleyball>().Vx, 2) + Mathf.Pow(Projectile.gameObject.GetComponent<Volleyball>().Vz, 2)) * m_FlightDuration;
+        float target_Distance = Mathf.Sqrt(Mathf.Pow(Projectile.gameObject.GetComponent<Volleyball>().m_Vx, 2) + Mathf.Pow(Projectile.gameObject.GetComponent<Volleyball>().m_Vz, 2)) * m_FlightDuration;
 
         // Test for a priori collision with the terrain
-        if (Projectile.gameObject.GetComponent<Volleyball>().DetectCollisionAPriori(Projectile.position.x, Projectile.position.z, m_FlightDuration)) {
+        if (Projectile.gameObject.GetComponent<Volleyball>().DetectCollisionAPriori(Projectile.position.x, Projectile.position.z, m_FlightDuration, transform.name)) {
             Debug.Log("La detection a priori detecte un collision avec le terrain!!");
         }
 
