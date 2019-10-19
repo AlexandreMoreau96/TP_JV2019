@@ -49,7 +49,7 @@ public class ThrowSimulation : MonoBehaviour
 
         // Test for a priori collision with the terrain
         if (Projectile.gameObject.GetComponent<Volleyball>().DetectCollisionAPriori(Projectile.position.x, Projectile.position.z, m_FlightDuration)) {
-            Debug.Log("La detection a priori detecte un collision avec le terrain!!");
+            Debug.Log("La détection à priori détecte une collision avec le terrain");
         }
 
         // Set the ball state to Is_Throwing

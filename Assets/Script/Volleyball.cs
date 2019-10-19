@@ -83,8 +83,6 @@ public class Volleyball : MonoBehaviour
                 float vMagnitude = (transform.position - vClosestPoint).magnitude;
                 float vRayon = GetComponent<Renderer>().bounds.extents.x; // It's a sphere, so any vertice is equidistant to the origin
 
-                Debug.Log(vMagnitude + " " + vRayon);
-
                 if (vMagnitude <= vRayon && m_JustBounced == false) {
 
                     if (m_Vy < 2.0f && m_Vy > -2.0f)
