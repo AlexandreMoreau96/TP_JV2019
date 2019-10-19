@@ -50,8 +50,12 @@ public class Volleyball : MonoBehaviour
 
                 Vector3 vClosestPoint = vObject.GetComponent<Renderer>().bounds.ClosestPoint(transform.position);
 
-                if (transform.position.x >= 0 && transform.position.x <= vSize.x && transform.position.z >= 0 && transform.position.z <= vSize.z
-                    && transform.position.y - GetComponent<Renderer>().bounds.extents.y <= vObject.transform.position.y && m_JustBounced == false) {
+                float vMagnitude = (transform.position - vClosestPoint).magnitude;
+                float vRayon = GetComponent<Renderer>().bounds.extents.x; // It's a sphere, so any vertice is equidistant to the origin
+
+                Debug.Log(vMagnitude + " " + vRayon);
+
+                if (vMagnitude <= vRayon && m_JustBounced == false) {
 
                     if (Vy < 2.0f && Vy > -2.0f)
                     {
@@ -67,8 +71,6 @@ public class Volleyball : MonoBehaviour
                     Vx = Vx * vObject.GetComponent<Physics>().m_Friction;
                     Vz = Vz * vObject.GetComponent<Physics>().m_Friction;
                 }
-
-                
             }
         }
     }
