@@ -23,7 +23,7 @@ public class ThrowSimulation : MonoBehaviour
         }
 
         // Random values for the shots
-        Vector3 m_ProjectileVelocity = new Vector3(Random.value * 10 * playerModifier, Random.value * 20, Random.value * 10 - 5);
+        Vector3 m_ProjectileVelocity = new Vector3(Random.value * 10 * playerModifier, Random.value * 20 , Random.value * 10 - 5);
 
         // Create the new ball
         Projectile = Instantiate(BallGameObject).transform;
@@ -48,7 +48,7 @@ public class ThrowSimulation : MonoBehaviour
 
         // Test for a priori collision with the terrain
         if (Projectile.gameObject.GetComponent<Volleyball>().DetectCollisionAPriori(Projectile.position.x, Projectile.position.z, m_FlightDuration)) {
-            Debug.Log("Il y aura une collision avec le terrain.");
+            Debug.Log("La detection a priori detecte un collision avec le terrain!!");
         }
 
         // Set the ball state to Is_Throwing

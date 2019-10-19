@@ -594,36 +594,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &725653291
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 725653292}
-  m_Layer: 0
-  m_Name: RandomSpotOnPlayer1Side
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &725653292
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725653291}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.83, y: -0.9525118, z: 5.56}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &756506846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,8 +1366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleCollisionGameObjects:
-  - {fileID: 246347078}
   - {fileID: 884900392}
+  - {fileID: 246347078}
   - {fileID: 965793350}
   - {fileID: 927932013}
   - {fileID: 1147814910}
@@ -1422,36 +1392,6 @@ MonoBehaviour:
   m_Bounciness: 0
   m_Friction: 0
   GRAVITY: 9.81
---- !u!1 &1906750787
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1906750788}
-  m_Layer: 0
-  m_Name: RandomSpotOnPlayer2Side
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1906750788
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906750787}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.97, y: -0.9525118, z: 2.54}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2143278333 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 756999894498812808, guid: df775bdd2b445344f8d426c57daa6585,
@@ -1549,7 +1489,7 @@ PrefabInstance:
         type: 3}
       propertyPath: targets.Array.data[1]
       value: 
-      objectReference: {fileID: 1906750788}
+      objectReference: {fileID: 0}
     - target: {fileID: 8267643435485273719, guid: d373c24f8eb1f4b45b0404c3b7aff588,
         type: 3}
       propertyPath: BallGameObject
@@ -1675,7 +1615,7 @@ PrefabInstance:
         type: 3}
       propertyPath: targets.Array.data[1]
       value: 
-      objectReference: {fileID: 725653292}
+      objectReference: {fileID: 0}
     - target: {fileID: 3046900929572875670, guid: 700895c23b7be81499dc45007d204002,
         type: 3}
       propertyPath: BallGameObject
@@ -1811,15 +1751,30 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 7337706588146203050, guid: df775bdd2b445344f8d426c57daa6585,
+        type: 3}
+      propertyPath: m_TagString
+      value: Net
+      objectReference: {fileID: 0}
     - target: {fileID: 5804422603274707528, guid: df775bdd2b445344f8d426c57daa6585,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804422603274707528, guid: df775bdd2b445344f8d426c57daa6585,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 756999894498812808, guid: df775bdd2b445344f8d426c57daa6585,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 756999894498812808, guid: df775bdd2b445344f8d426c57daa6585,
         type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9069839613745491528, guid: df775bdd2b445344f8d426c57daa6585,
         type: 3}
@@ -1839,7 +1794,7 @@ PrefabInstance:
     - target: {fileID: 5645921852812324365, guid: df775bdd2b445344f8d426c57daa6585,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Net
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df775bdd2b445344f8d426c57daa6585, type: 3}

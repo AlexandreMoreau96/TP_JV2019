@@ -34,8 +34,9 @@ public class Volleyball : MonoBehaviour
                 if ((transform.position - vClosestPoint).sqrMagnitude <=
                     GetComponent<Renderer>().bounds.extents.sqrMagnitude)
                 {
-                    Destroy(gameObject);
-                    Debug.Log("Collision avec le filet");
+                    Vx = 0;
+                    Vz = 0;
+                    Vy = -m_Physics.GRAVITY / 2;
                 }
             }
 
