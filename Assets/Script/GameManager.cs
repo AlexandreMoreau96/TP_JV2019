@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject m_GameUI;
+    [SerializeField]
+    private Text m_gameWinnerText;
 
     private GameObject player1;
     private GameObject player2;
@@ -22,6 +25,8 @@ public class GameManager : MonoBehaviour
     public Camera m_CinematicCamera;
 
     private bool m_SwitchingTurn = false;
+    private bool m_GameOver = false;
+    private bool m_UIEnabled = false;
 
     private void Awake()
     {
@@ -38,6 +43,7 @@ public class GameManager : MonoBehaviour
         m_PointPlayer2 = 0;
         player2.GetComponent<PlayerSetup>().DisableComponents();
         player1.GetComponent<ThrowSimulation>().ThrowProjectile();
+        m_GameUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -45,7 +51,7 @@ public class GameManager : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Ball").Length == 0 && !m_SwitchingTurn)
         {
-            if (GameOver())
+            if (m_GameOver)
             {
                 EndGame();
             }
@@ -73,12 +79,17 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-        throw new NotImplementedException();
+        if (!m_UIEnabled)
+        {
+            m_GameUI.SetActive(true);
+            m_UIEnabled = true;
+        }
     }
 
-    private bool GameOver()
+    public void GameOver(string pWinner)
     {
-        return m_PointPlayer1 == 2 || m_PointPlayer2 == 2;
+        m_GameOver = true;
+        m_gameWinnerText.text +=  pWinner;
     }
 
     public void ChangeTurn()

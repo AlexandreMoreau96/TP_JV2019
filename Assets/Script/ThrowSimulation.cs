@@ -23,8 +23,8 @@ public class ThrowSimulation : MonoBehaviour
         }
 
         // Random values for the shots
-        //Vector3 m_ProjectileVelocity = new Vector3((Random.value * 10 + 2 )* playerModifier, Random.value * 20 + 5 , Random.value * 10 - 5);
-        Vector3 m_ProjectileVelocity = new Vector3(7 * playerModifier, 12, 1);
+        Vector3 m_ProjectileVelocity = new Vector3((Random.value * 10 + 2 )* playerModifier, Random.value * 20 + 5 , Random.value * 10 - 5);
+        
 
         // Create the new ball
         Projectile = Instantiate(BallGameObject).transform;

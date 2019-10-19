@@ -24,12 +24,14 @@ public class Volleyball : MonoBehaviour
     private Physics m_Physics;
     private bool m_AddPointPlayer1;
     private bool m_AddPointPlayer2;
+    private bool m_GameOver;
 
     private void Start()
     {
         m_Physics = GetComponent<Physics>();
         m_AddPointPlayer2 = false;
         m_AddPointPlayer1 = false;
+        m_GameOver = false;
     }
 
     public void DetectCollision()
@@ -136,9 +138,19 @@ public class Volleyball : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if((m_PointPlayer1 == 1 || m_PointPlayer2  == 1) && m_JustBounced && !m_HitNet)
+        if((m_PointPlayer1 == 2 || m_PointPlayer2  == 2) && m_JustBounced && !m_HitNet && !m_GameOver)
         {
-            Debug.Log("Parti Terminer");
+            if(m_PointPlayer1 > m_PointPlayer2)
+            {
+                m_GameManager.GameOver("player1");
+            }
+            else
+            {
+                m_GameManager.GameOver("player2");
+
+            }
+            m_GameOver = true;
+           
         }
 
     }
