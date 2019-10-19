@@ -48,7 +48,7 @@ public class ThrowSimulation : MonoBehaviour
         float target_Distance = Mathf.Sqrt(Mathf.Pow(Projectile.gameObject.GetComponent<Volleyball>().m_Vx, 2) + Mathf.Pow(Projectile.gameObject.GetComponent<Volleyball>().m_Vz, 2)) * m_FlightDuration;
 
         // Test for a priori collision with the terrain
-        if (Projectile.gameObject.GetComponent<Volleyball>().DetectCollisionAPriori(Projectile.position.x, Projectile.position.z, m_FlightDuration, transform.name)) {
+        if (Projectile.gameObject.GetComponent<Volleyball>().DetectCollisionAPriori(Projectile.position.x, Projectile.position.z, m_FlightDuration)) {
             Debug.Log("La detection a priori detecte un collision avec le terrain!!");
         }
 

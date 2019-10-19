@@ -9,6 +9,7 @@ TagManager:
   - terrain
   - Net
   - Ball
+  - ServeZone
   layers:
   - Default
   - TransparentFX

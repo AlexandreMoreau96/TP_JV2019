@@ -14,6 +14,7 @@ public class Volleyball : MonoBehaviour
     [SerializeField]
     private GameManager m_GameManager;
     private bool m_HitNet;
+    private bool m_HitZone;
     public float m_Vx = 0;
     public float m_Vy = 0;
     public float m_Vz = 0;
@@ -22,22 +23,28 @@ public class Volleyball : MonoBehaviour
     private float m_ElapsedTime = 0.0f;
     public bool m_IsThrowing = false;
     private Physics m_Physics;
-    private bool m_AddPointPlayer1;
-    private bool m_AddPointPlayer2;
-    private bool m_GameOver;
+    private bool m_PointAdded = false;
 
     private void Start()
     {
         m_Physics = GetComponent<Physics>();
-        m_AddPointPlayer2 = false;
-        m_AddPointPlayer1 = false;
-        m_GameOver = false;
     }
 
     public void DetectCollision()
     {
         foreach (GameObject vObject in possibleCollisionGameObjects)
         {
+            if (vObject.tag == "ServeZone") {
+                Vector3 vSize = vObject.GetComponent<Renderer>().bounds.size;
+
+                Vector3 vClosestPoint = vObject.GetComponent<Renderer>().bounds.ClosestPoint(transform.position);
+
+                if ((transform.position - vClosestPoint).sqrMagnitude <=
+                    GetComponent<Renderer>().bounds.extents.sqrMagnitude) {
+                    m_HitZone = true;
+                }
+            }
+
             if (vObject.tag == "Net") {
                 Vector3 vSize = vObject.GetComponent<Renderer>().bounds.size;
 
@@ -50,6 +57,16 @@ public class Volleyball : MonoBehaviour
                     m_Vx = 0;
                     m_Vz = 0;
                     m_Vy = -m_Physics.GRAVITY / 2;
+
+                    if (!m_PointAdded) {
+                        if (m_GameManager.player1Playing) {
+                            m_GameManager.AddPoint(2);
+                        }
+                        else {
+                            m_GameManager.AddPoint(1);
+                        }
+                        m_PointAdded = true;
+                    }
                 }
             }
 
@@ -79,46 +96,50 @@ public class Volleyball : MonoBehaviour
 
                     m_Vx = m_Vx * vObject.GetComponent<Physics>().m_Friction;
                     m_Vz = m_Vz * vObject.GetComponent<Physics>().m_Friction;
+
+                    if (!m_PointAdded) {
+                        if (transform.position.x <= vSize.x / 2) {
+
+                            if (m_GameManager.player1Playing && m_HitZone) {
+                                m_GameManager.AddPoint(1);
+                            }
+                            else {
+                                m_GameManager.AddPoint(2);
+                            }
+                        }
+                        else {
+
+                            if (m_GameManager.player1Playing && m_HitZone) {
+                                m_GameManager.AddPoint(2);
+                            }
+                            else {
+                                m_GameManager.AddPoint(1);
+                            }
+                        }
+
+                        m_PointAdded = true;
+                    }
+
                 }
 
-                
             }
         }
     }
 
-    public bool DetectCollisionAPriori(float initialX, float initialZ, float pFlightDuration, string player)
+    public bool DetectCollisionAPriori(float initialX, float initialZ, float pFlightDuration)
     {
         float vLastX = initialX - m_Vx * pFlightDuration;
         float vLastZ = initialZ + m_Vz * pFlightDuration;
-        m_AddPointPlayer2 = false;
-        m_AddPointPlayer1 = false;
 
         foreach (GameObject vObject in possibleCollisionGameObjects)
         {
 
             if (vObject.tag == "terrain")
             {
-                Debug.Log("Player shooting : " + player);
                 Vector3 vSize = vObject.GetComponent<Renderer>().bounds.size;
 
                 if (vLastX >= 0 && vLastX <= vSize.x && vLastZ >= 0 && vLastZ <= vSize.z)
                 {
-                    if (vLastX <= vSize.x / 2 && vLastX <= vSize.x && vLastZ <= vSize.z && vLastZ <= vSize.z)
-                    {
-                        if (player == "Player1")
-                        {
-                            m_PointPlayer1 += 1;
-                            Debug.Log("La balle tombera du cote du joueur2");
-                        }
-                    } else
-                    {
-                        if (player == "Player2")
-                        {
-                            m_PointPlayer2 += 1;
-                            Debug.Log("La balle tombera du cote du joueur1");
-                        }
-                    }
-                    
                     m_ContactPoint = new Vector3(vLastX, vObject.transform.position.y, vLastZ);
                     return true;
                 }
@@ -137,22 +158,6 @@ public class Volleyball : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if((m_PointPlayer1 == 2 || m_PointPlayer2  == 2) && m_JustBounced && !m_HitNet && !m_GameOver)
-        {
-            if(m_PointPlayer1 > m_PointPlayer2)
-            {
-                m_GameManager.GameOver("player1");
-            }
-            else
-            {
-                m_GameManager.GameOver("player2");
-
-            }
-            m_GameOver = true;
-           
-        }
-
     }
 
     public void FixedUpdate() {

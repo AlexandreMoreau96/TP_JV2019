@@ -20,13 +20,15 @@ public class GameManager : MonoBehaviour
     private static int m_PointPlayer1;
     private static int m_PointPlayer2;
 
-    private bool player1Playing;
+    public bool player1Playing;
 
     public Camera m_CinematicCamera;
 
     private bool m_SwitchingTurn = false;
     private bool m_GameOver = false;
     private bool m_UIEnabled = false;
+
+    private int m_MaxPoints = 3;
 
     private void Awake()
     {
@@ -51,6 +53,8 @@ public class GameManager : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Ball").Length == 0 && !m_SwitchingTurn)
         {
+            TestWinner();
+
             if (m_GameOver)
             {
                 EndGame();
@@ -89,7 +93,7 @@ public class GameManager : MonoBehaviour
     public void GameOver(string pWinner)
     {
         m_GameOver = true;
-        m_gameWinnerText.text +=  pWinner;
+        m_gameWinnerText.text += pWinner;
     }
 
     public void ChangeTurn()
@@ -109,5 +113,30 @@ public class GameManager : MonoBehaviour
         }
 
         m_CinematicCamera.GetComponent<CinematicCamera>().m_IsMoving = true;
+    }
+
+    public void AddPoint(int player)
+    {
+        if (player == 1)
+        {
+            m_PointPlayer1 += 1;
+        }
+        else
+        {
+            m_PointPlayer2 += 1;
+        }
+    }
+
+    public void TestWinner()
+    {
+        Debug.Log("Joueur 1: " + m_PointPlayer1 + "\nJoueur 2: " + m_PointPlayer2);
+        if ((m_PointPlayer1 == m_MaxPoints || m_PointPlayer2 == m_MaxPoints) && !m_GameOver) {
+            if (m_PointPlayer1 > m_PointPlayer2) {
+                GameOver("player1");
+            }
+            else {
+                GameOver("player2");
+            }
+        }
     }
 }
