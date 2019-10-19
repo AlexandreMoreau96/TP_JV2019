@@ -80,9 +80,10 @@ public class Volleyball : MonoBehaviour
 
                 Vector3 vClosestPoint = vObject.GetComponent<Renderer>().bounds.ClosestPoint(transform.position);
 
+                //Detection de la collision avec le terrain
                 if (transform.position.x >= 0 && transform.position.x <= vSize.x && transform.position.z >= 0 && transform.position.z <= vSize.z
-                    && transform.position.y - GetComponent<Renderer>().bounds.extents.y <= vObject.transform.position.y && m_JustBounced == false) {
-
+                    && transform.position.y - GetComponent<Renderer>().bounds.extents.y <= vObject.transform.position.y && m_JustBounced == false)
+                {
                     if (m_Vy < 2.0f && m_Vy > -2.0f)
                     {
                         m_Vy = 0;
@@ -97,22 +98,29 @@ public class Volleyball : MonoBehaviour
                     m_Vx = m_Vx * vObject.GetComponent<Physics>().m_Friction;
                     m_Vz = m_Vz * vObject.GetComponent<Physics>().m_Friction;
 
-                    if (!m_PointAdded) {
-                        if (transform.position.x <= vSize.x / 2) {
+                    if (!m_PointAdded)
+                    {
+                        if (transform.position.x <= vSize.x / 2)
+                        {
 
-                            if (m_GameManager.player1Playing && m_HitZone) {
+                            if (m_GameManager.player1Playing && m_HitZone)
+                            {
                                 m_GameManager.AddPoint(1);
                             }
-                            else {
+                            else
+                            {
                                 m_GameManager.AddPoint(2);
                             }
                         }
-                        else {
+                        else
+                        {
 
-                            if (m_GameManager.player1Playing && m_HitZone) {
+                            if (!m_GameManager.player1Playing && m_HitZone)
+                            {
                                 m_GameManager.AddPoint(2);
                             }
-                            else {
+                            else
+                            {
                                 m_GameManager.AddPoint(1);
                             }
                         }
@@ -120,6 +128,21 @@ public class Volleyball : MonoBehaviour
                         m_PointAdded = true;
                     }
 
+                }
+                else
+                {
+                    if (!m_PointAdded)
+                    {
+                        if (m_GameManager.player1Playing)
+                        {
+                            m_GameManager.AddPoint(2);
+                        }
+                        else
+                        {
+                            m_GameManager.AddPoint(1);
+                        }
+                        m_PointAdded = true;
+                    }
                 }
 
             }
